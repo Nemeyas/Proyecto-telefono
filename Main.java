@@ -1,12 +1,12 @@
-package Empresa;
-package Planes;
+//package Empresa;
+//package Planes;
 import java.io.*;
 
-public class main(){
+public class Main{
 
-    public static void main(String[] args) throws IOEXception{
+    public static void main(String[] args) throws IOException{
         BufferedReader lector = new BufferedReader( new InputStreamReader(System.in));
-        System.out.println("SEXO");
+        System.out.println(lector.readLine());
 
 
 
