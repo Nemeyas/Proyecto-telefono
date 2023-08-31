@@ -1,62 +1,72 @@
-//package Empresa;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.*;
 
 public class Empresa{
     
-    private Planes[] planes;
-    private String nombreDeLaEmpresa;
-    //private String[] clientes; // Clientes[] clientes;
-    //private int tallaClientes;
-    //private int tallaOcupadoClientes;
-    private int tallaPlanes;
-    private int tallaOcupada;
-    BufferedReader lee = new BufferedReader( new InputStreamReader(System.in));
-
-    public Empresa(int talla, String nombreEmpresa){
-        tallaPlanes = talla; 
-        planes = new Planes[tallaPlanes];
-
-        for(int i = 0 ; i < tallaPlanes ; i++){
-            planes[i] = new Planes();
-        }
-        
+  //private Planes planes;
+  private Hashtable<String,Planes> tablaHash = new Hashtable<String,Planes>();
+  private ArrayList<Planes> lista = new ArrayList<Planes>();
+  private ArrayList<Clientes> listaClientes = new ArrayList<Clientes>();
+  private String nombreDeLaEmpresa;
+  
+    public Empresa(String nombreEmpresa){
         nombreDeLaEmpresa = nombreEmpresa;
-        //clientes = new String[tallaPlanes];
-        tallaOcupada = 0;
     }
 
-    public void agregarPlan(int talla, int valorPlan, int cantGigas, int cantMinutos, String PlanNombre) {
-        planes[tallaOcupada].crearPlan(talla, valorPlan, cantGigas, cantMinutos, PlanNombre);
-        tallaOcupada++;
-    }
-
-    public void mostrarEmpresa( ){
+    public void mostrarNombre(){
         System.out.println(nombreDeLaEmpresa);
     }
 
-    public void agregarCliente(String newClient){
-        //clientes[tallaCliente] = newClient;
-        //planes.agregarClientePlan(newClient);
-        //tallaCliente++;
-    }
-
-    public void borrarPlan( String nombreDelPlan){
-
-        ////planes.borrar(nombreDelPlan);
-        tallaOcupada--;
-    }
-
-
-
-    public void mostrarPlanes( int choice){
-        for( int i = 0 ; i < tallaPlanes; i++){
-            planes[i].mostrarPlan( choice );
+    public void agregarCliente(String nombreCliente, String nombrePlan){
+        Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan);
+        if( listaClientes.indexOf(clienteNuevo) != -1){
+            System.out.println("El cliente ya existe");
+            clienteNuevo = null;
+            return;
         }
+        tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
+        listaClientes.add(clienteNuevo);
+    }
+    
+    public void agregarPlan(int talla, int valorPlan, int cantGigas, int cantMinutos, String PlanNombre) {
+      Planes plan2 = new Planes(valorPlan, cantGigas, cantMinutos, PlanNombre);
+      if(lista.contains(plan2)){
+        return;
+      }
+      lista.add(plan2);
+      tablaHash.put(PlanNombre, plan2);
     }
 
+    public void eliminarPlan(String nombrePlan){
+        if( tablaHash.get(nombrePlan) == null){
+            System.out.println("No existe el plan");
+            return;
+        }
+        
+        for (int i = 0 ; i < lista.size() ; i++){
+            if (nombrePlan.equals(lista.get(i).mostrarNombreR())){
+                lista.remove(lista.get(i));
+            } 
+        }
+        tablaHash.remove(nombrePlan);
+        
+        for (int i = 0 ; i < listaClientes.size() ; i++){
+            if (nombrePlan.equals(listaClientes.get(i).encontrarPlan(nombrePlan))){
+            listaClientes.remove(listaClientes.get(i));
+        } 
+      }
+    }
 
+    public void eliminarCliente(String nombreCliente){
+        
+    }
 
-
+    public void mostrar(int opcion){
+        System.out.println(nombreDeLaEmpresa);
+        for (int i = 0 ; i < lista.size() ; i++){
+          lista.get(i).mostrarPlan();
+          lista.get(i).mostrarClientes();
+      }
+    }
+  
 }

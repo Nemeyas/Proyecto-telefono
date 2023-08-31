@@ -11,10 +11,7 @@ public class Main{
         System.out.println("Ingrese el nombre de su empresa");
         String lecturaNombre = lector.readLine();
         
-        System.out.println("Ingrese la cantidad de Planes");
-        int lecturaTalla = Integer.parseInt(lector.readLine());
-        
-        Empresa empresa = new Empresa(lecturaTalla, lecturaNombre);
+        Empresa empresa = new Empresa(lecturaNombre);
 
         while(true){
             System.out.println("¿Que quiere hacer con su empresa?");

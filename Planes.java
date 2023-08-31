@@ -1,46 +1,48 @@
 //package Planes;
+import java.util.*;
 
 public class Planes{
-    private String[] clientes;
+    private ArrayList<String> clientes = new ArrayList<String>();
     private int monto;
     private int gigas;
     private int minutos;
     private String nombreDelPlan;
-    private int TallaP;
-    private int largoOcupado;
-    
-    
-    
-    public void crearPlan(int talla, int valorPlan, int cantGigas, int cantMinutos, String PlanNombre){
-        clientes = new String[talla];
-        monto = valorPlan;
-        gigas = cantGigas;
-        minutos = cantMinutos;
-        nombreDelPlan = PlanNombre;
+
+    public  Planes(int valorPlan, int cantGigas, int cantMinutos, String PlanNombre){
+      monto = valorPlan;
+      gigas = cantGigas;
+      minutos = cantMinutos;
+      nombreDelPlan = PlanNombre;
     }
 
-    public void agregarClientePlan(){
-
+    public String mostrarNombreR(){
+        return nombreDelPlan;
     }
 
-    public void mostrarPlan( int opcion ){
+    public void agregarClientePlan(String nombre){
+        String cliente = nombre;
+        if( clientes.contains(cliente)){
+            return;
+        }
+        clientes.add(cliente);
+    }
+
+    public void eliminarCliente(String nombreCliente){
+        clientes.remove(clientes.indexOf(nombreCliente));
+    }
+
+    public void mostrarPlan(){
         System.out.println( nombreDelPlan);
-        if( opcion == 2){
-            for ( int i = 0 ; i < TallaP ; i++){
-                System.out.println( clientes[i]);
-            }
-        }
-        if( opcion == 3){
-            System.out.println("valor: $"+ monto);
-            System.out.println("gigas: "+ gigas);
-            System.out.println("minutos: "+ minutos);
-        }
-
+        System.out.println(monto);
+        System.out.println(gigas);
+        System.out.println(minutos);
     }
 
-
-
-
-
+    public void mostrarClientes(){
+        System.out.println("Clientes:");
+        for ( int i = 0 ; i < clientes.size(); i++){
+            System.out.println(clientes.get(i));
+        }
+    }
 
 }
