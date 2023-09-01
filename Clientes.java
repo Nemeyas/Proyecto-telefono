@@ -16,9 +16,11 @@ public class Clientes {
     public void mostrar(){
         System.out.println("Cliente : " + nombre);
         if ( planes.size() != 0){
+            System.out.print("Planes : ");
             for( int i = 0 ; i < planes.size() ; i++){
-            System.out.println(planes.get(i));
-            }    
+            System.out.print(planes.get(i) + " ");
+            }
+            System.out.println(" ");    
         }
         else{
             System.out.println("El cliente no tiene planes");

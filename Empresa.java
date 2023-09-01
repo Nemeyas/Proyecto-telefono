@@ -17,6 +17,14 @@ public class Empresa{
         System.out.println(nombreDeLaEmpresa);
     }
 
+    public void mostrarCliente(String nombreCliente){
+      for( int i = 0 ; i < listaClientes.size() ; i++){
+        if( nombreCliente.equals(listaClientes.get(i).nombreCliente())){
+          listaClientes.get(i).mostrar();
+        }
+      }
+    }
+
     public void agregarCliente(String nombreCliente, String nombrePlan){
         Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan);
         if( listaClientes.indexOf(clienteNuevo) != -1){
@@ -28,7 +36,7 @@ public class Empresa{
         listaClientes.add(clienteNuevo);
     }
     
-    public void agregarPlan(int talla, int valorPlan, int cantGigas, int cantMinutos, String PlanNombre) {
+    public void agregarPlan(int valorPlan, int cantGigas, int cantMinutos, String PlanNombre) {
       Planes plan2 = new Planes(valorPlan, cantGigas, cantMinutos, PlanNombre);
       if(lista.contains(plan2)){
         return;
@@ -61,7 +69,16 @@ public class Empresa{
         
     }
 
-    public void mostrar(int opcion){
+    public void mostrarPlan(String nombreDelPlan){
+      for( int i = 0 ; i< lista.size() ; i++){
+        if(nombreDelPlan.equals(lista.get(i).mostrarNombreR())){
+          lista.get(i).mostrarPlan();
+        }
+      }
+
+    }
+
+    public void mostrar(){
         System.out.println(nombreDeLaEmpresa);
         for (int i = 0 ; i < lista.size() ; i++){
           lista.get(i).mostrarPlan();

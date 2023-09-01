@@ -29,39 +29,36 @@ public class Main{
                 String nombrePlan = lector.readLine();
                 System.out.println("Ingrese valor del plan");
                 int valorPlan = Integer.parseInt(lector.readLine());
-                System.out.println("Ingrese la cantidad de clientes maxima del plan");
-                int cantMax = Integer.parseInt(lector.readLine());
                 System.out.println("Ingrese los minutos del plan");
                 int minutos = Integer.parseInt(lector.readLine());
                 System.out.println("Ingrese los gigas del plan");
                 int gigas = Integer.parseInt(lector.readLine());
-                empresa.agregarPlan(cantMax, valorPlan, gigas, minutos, nombrePlan);
+                empresa.agregarPlan(valorPlan, gigas, minutos, nombrePlan);
             }
             if (opcion == 2){
-                
-
-
+                System.out.println("Ingrese el nombre del cliente(Los clientes no se pueden repetir)");
+                String nombreCliente = lector.readLine();
+                System.out.println("Ingrese el plan del cliente");
+                String nombrePlan = lector.readLine();
+                empresa.agregarCliente(nombreCliente, nombrePlan);
             }
             if (opcion == 3){
-                
-
-
-
+                System.out.println("ingrese el nombre del plan a eliminar");
+                String nombrePlanEliminar = lector.readLine();
+                empresa.eliminarPlan(nombrePlanEliminar);
             }
             if (opcion == 4){
-                
-
-
+                empresa.mostrar();
             }
             if (opcion == 5){
-                
-
-
+                System.out.println("Ingrese el nombre del plan a mostrar");
+                String nombrePlan = lector.readLine();
+                empresa.mostrarPlan(nombrePlan);
             }
             if (opcion == 6){
-                
-
-                
+                System.out.println("Ingrese el nombre del cliente a buscar");
+                String nombreCliente = lector.readLine();
+                empresa.mostrarCliente(nombreCliente);
             }
             if (opcion == 7){
                 return;
