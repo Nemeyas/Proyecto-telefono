@@ -31,9 +31,13 @@ public class Empresa{
     public void agregarPlanCliente(String nombreCliente, String nombrePlan){
       for(int i=0; i<listaClientes.size(); i++){
         if(nombreCliente.equals(listaClientes.get(i).nombreCliente())){
-          listaClientes.get(i).agregarPlan(nombrePlan);
-          tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
-          return;
+          if(tablaHash.get(nombrePlan) != null){
+            listaClientes.get(i).agregarPlan(nombrePlan);
+            tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
+            return;
+
+          }
+
         }
       }
       System.out.println("El cliente ingresado no existe");
