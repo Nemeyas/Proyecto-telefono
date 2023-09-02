@@ -2,10 +2,11 @@ import java.util.*;
 
 public class Clientes {
     private String nombre;
-    private ArrayList<String> planes = new ArrayList<String>();
+    private ArrayList<String> planes;
 
     public Clientes(String nombreCliente, String nombrePlan){
         nombre = nombreCliente;
+        planes = new ArrayList<String>();
         planes.add(nombrePlan);
     }
 
