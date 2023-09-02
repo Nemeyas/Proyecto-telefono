@@ -9,10 +9,7 @@ public class Clientes {
         planes.add(nombrePlan);
     }
 
-    public void agregarPlan(String nombrePlan){
-        planes.add(nombrePlan);
-
-    }
+    
     public void mostrar(){
         System.out.println("Cliente : " + nombre);
         if ( planes.size() != 0){
@@ -48,5 +45,15 @@ public class Clientes {
                 planes.remove(i);
             }
         }
+    }
+
+    public void agregarPlan(String nombrePlan){
+        for(int i = 0 ; i < planes.size() ; i++){
+            if(nombrePlan.equals(planes.get(i))){
+                System.out.println("El cliente ya posee este plan");
+                return;
+            }
+        }
+        planes.add(nombrePlan);
     }
 }
