@@ -22,7 +22,7 @@ public class Planes{
 
     public void agregarClientePlan(String nombre){
         String cliente = nombre;
-        if( clientes.contains(cliente)){
+        if(clientes.contains(cliente)){
             return;
         }
         clientes.add(cliente);
@@ -30,6 +30,12 @@ public class Planes{
 
     public void eliminarCliente(String nombreCliente){
         clientes.remove(clientes.indexOf(nombreCliente));
+    }
+
+    public void eliminarCliente(){
+        for (int i = 0 ; i < clientes.size() ; i++){
+            clientes.remove(clientes.get(i));
+        }
     }
 
     public void mostrarPlan(){
