@@ -2,17 +2,18 @@
 import java.util.*;
 
 public class Planes{
-    private ArrayList<String> clientes = new ArrayList<String>();
+    private ArrayList<String> clientes;
     private int monto;
     private int gigas;
     private int minutos;
     private String nombreDelPlan;
 
     public  Planes(int valorPlan, int cantGigas, int cantMinutos, String PlanNombre){
-      monto = valorPlan;
-      gigas = cantGigas;
-      minutos = cantMinutos;
-      nombreDelPlan = PlanNombre;
+        clientes = new ArrayList<String>();
+        monto = valorPlan;
+        gigas = cantGigas;
+        minutos = cantMinutos;
+        nombreDelPlan = PlanNombre;
     }
 
     public String mostrarNombreR(){
@@ -21,7 +22,7 @@ public class Planes{
 
     public void agregarClientePlan(String nombre){
         String cliente = nombre;
-        if( clientes.contains(cliente)){
+        if(clientes.contains(cliente)){
             return;
         }
         clientes.add(cliente);
@@ -31,8 +32,15 @@ public class Planes{
         clientes.remove(clientes.indexOf(nombreCliente));
     }
 
+    public void eliminarCliente(){
+        for (int i = 0 ; i < clientes.size() ; i++){
+            clientes.remove(clientes.get(i));
+        }
+    }
+
     public void mostrarPlan(){
-        System.out.println( nombreDelPlan);
+        System.out.println("");
+        System.out.println(nombreDelPlan);
         System.out.println(monto);
         System.out.println(gigas);
         System.out.println(minutos);

@@ -1,80 +1,45 @@
 //package Empresa;
 //package Planes;
-import java.io.*;
+
 
 public class Main{
 
-    public static void main(String[] args) throws IOException{
-        BufferedReader lector = new BufferedReader( new InputStreamReader(System.in));
-        int opcion;
-        
-        System.out.println("Ingrese el nombre de su empresa");
-        String lecturaNombre = lector.readLine();
-        
-        Empresa empresa = new Empresa(lecturaNombre);
+    public static void main(String[] args){
+      Menu menu = new Menu();
+      Empresa empresa = new Empresa(menu.leerNombreEmpresa());
 
         while(true){
-            System.out.println("¿Que quiere hacer con su empresa?");
-            System.out.println("1. Agregar otro plan");
-            System.out.println("2. Agregar cliente nuevo");
-            System.out.println("3  Borrar plan");
-            System.out.println("4  Mostrar planes");
-            System.out.println("5  Buscar plan");
-            System.out.println("6  Buscar Cliente");
-            System.out.println("7. Salir del programa y borrar la empresa");
-
-            opcion = Integer.parseInt(lector.readLine());
-            if (opcion == 1){
-                System.out.println("Ingrese el nombre del plan");
-                String nombrePlan = lector.readLine();
-                System.out.println("Ingrese valor del plan");
-                int valorPlan = Integer.parseInt(lector.readLine());
-                System.out.println("Ingrese los minutos del plan");
-                int minutos = Integer.parseInt(lector.readLine());
-                System.out.println("Ingrese los gigas del plan");
-                int gigas = Integer.parseInt(lector.readLine());
-                empresa.agregarPlan(valorPlan, gigas, minutos, nombrePlan);
+          menu.menu();
+          String opcion = menu.opcion();
+            if (opcion.equals("1")){
+                empresa.crearPlan(menu.leerPrecio(), menu.leerGigas(), menu.leerMinutos(), menu.leerNombrePlan(1));
             }
-            if (opcion == 2){
-                System.out.println("Ingrese el nombre del cliente(Los clientes no se pueden repetir)");
-                String nombreCliente = lector.readLine();
-                System.out.println("Ingrese el plan del cliente");
-                String nombrePlan = lector.readLine();
-                empresa.agregarCliente(nombreCliente, nombrePlan);
+            else if (opcion.equals("2")){
+                empresa.agregarCliente(menu.leerNombreCliente(2), menu.leerNombrePlan(2), menu.leerMonto(), menu.leerRut());
             }
-            if (opcion == 3){
-                System.out.println("ingrese el nombre del plan a eliminar");
-                String nombrePlanEliminar = lector.readLine();
-                empresa.eliminarPlan(nombrePlanEliminar);
+            else if (opcion.equals("3")){
+                empresa.eliminarPlan(menu.leerNombrePlan(3));
             }
-            if (opcion == 4){
+            else if (opcion.equals("4")){
                 empresa.mostrar();
             }
-            if (opcion == 5){
-                System.out.println("Ingrese el nombre del plan a mostrar");
-                String nombrePlan = lector.readLine();
-                empresa.mostrarPlan(nombrePlan);
+            else if (opcion.equals("5")){
+                empresa.mostrar(menu.leerNombrePlan(5));
             }
-            if (opcion == 6){
-                System.out.println("Ingrese el nombre del cliente a buscar");
-                String nombreCliente = lector.readLine();
-                empresa.mostrarCliente(nombreCliente);
+            else if (opcion.equals("6")){
+                empresa.mostrarCliente(menu.leerNombreCliente(6));
             }
-            if (opcion == 7){
-                return;
+            else if (opcion.equals("7")){
+              empresa.agregarPlanCliente(menu.leerNombreCliente(7), menu.leerNombrePlan(7));
+            }
+            else if (opcion.equals("8")){
+              menu.finalPrograma();
+              return;
+            }
+            else{
+                menu.opcionInvalida();
             }
             
         }
-        
-
-        
-
-
-
     }
-
-
-
-
-
 }

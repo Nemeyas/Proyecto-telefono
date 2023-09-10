@@ -2,11 +2,16 @@ import java.util.*;
 
 public class Clientes {
     private String nombre;
+    private String rut;
+    private int deuda;
     private ArrayList<String> planes = new ArrayList<String>();
 
-    public Clientes(String nombreCliente, String nombrePlan){
+    public Clientes(String nombreCliente, String nombrePlan,int deuda ,String rut){
         nombre = nombreCliente;
         planes.add(nombrePlan);
+        this.rut = rut;
+        this.deuda = deuda;
+        
     }
 
     public void agregarPlan(String nombrePlan){

@@ -4,13 +4,16 @@ import java.util.*;
 public class Empresa{
     
   //private Planes planes;
-  private Hashtable<String,Planes> tablaHash = new Hashtable<String,Planes>();
-  private ArrayList<Planes> lista = new ArrayList<Planes>();
-  private ArrayList<Clientes> listaClientes = new ArrayList<Clientes>();
-  private String nombreDeLaEmpresa;
+    private Hashtable<String,Planes> tablaHash;
+    private ArrayList<Planes> lista;
+    private ArrayList<Clientes> listaClientes;
+    private String nombreDeLaEmpresa;
   
     public Empresa(String nombreEmpresa){
-        nombreDeLaEmpresa = nombreEmpresa;
+      tablaHash = new Hashtable<String,Planes>();
+      lista = new ArrayList<Planes>();
+      listaClientes = new ArrayList<Clientes>();
+      nombreDeLaEmpresa = nombreEmpresa;
     }
 
     public void mostrarNombre(){
@@ -25,8 +28,23 @@ public class Empresa{
       }
     }
 
-    public void agregarCliente(String nombreCliente, String nombrePlan){
-        Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan);
+    public void agregarPlanCliente(String nombreCliente, String nombrePlan){
+      for(int i=0; i<listaClientes.size(); i++){
+        if(nombreCliente.equals(listaClientes.get(i).nombreCliente())){
+          if(tablaHash.get(nombrePlan) != null){
+            listaClientes.get(i).agregarPlan(nombrePlan);
+            tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
+            return;
+
+          }
+
+        }
+      }
+      System.out.println("El cliente ingresado no existe");
+    }
+
+    public void agregarCliente(String nombreCliente, String nombrePlan, int deuda ,String rut){
+        Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, rut, deuda);
         if( listaClientes.indexOf(clienteNuevo) != -1){
             System.out.println("El cliente ya existe");
             clienteNuevo = null;
@@ -36,7 +54,7 @@ public class Empresa{
         listaClientes.add(clienteNuevo);
     }
     
-    public void agregarPlan(int valorPlan, int cantGigas, int cantMinutos, String PlanNombre) {
+    public void crearPlan(int valorPlan, int cantGigas, int cantMinutos, String PlanNombre) {
       Planes plan2 = new Planes(valorPlan, cantGigas, cantMinutos, PlanNombre);
       if(lista.contains(plan2)){
         return;
@@ -65,11 +83,17 @@ public class Empresa{
       }
     }
 
-    public void eliminarCliente(String nombreCliente){
-        
-    }
+/*    public void eliminarCliente(String nombreCliente){
+        //para otro dia
+      for(int i=0; i<listaClientes.size(); i++){
+        if(listaClientes(get(i))==NULL){
+          System.out.println("No existe el cliente");
+        }
+        listaClientes.remove(listaClientes.get(i));
+      }
+    }*/
 
-    public void mostrarPlan(String nombreDelPlan){
+    public void mostrar(String nombreDelPlan){
       for( int i = 0 ; i< lista.size() ; i++){
         if(nombreDelPlan.equals(lista.get(i).mostrarNombreR())){
           lista.get(i).mostrarPlan();
