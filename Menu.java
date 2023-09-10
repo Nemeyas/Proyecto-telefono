@@ -99,6 +99,12 @@ public class Menu{
     return monto;
   }
 
+  public String leerRut()throws IOException{
+    System.out.println("Ingrese el rut del cliente");
+    String rut = lector.readLine();
+    return rut;
+  }
+
   public void opcionInvalida(){
     System.out.println("Ingrese una opcion valida");
   }

@@ -39,10 +39,6 @@ public class Main{
             else{
                 menu.opcionInvalida();
             }
-            else{
-                System.out.println("Ingrese una opcion valida");
-            }
-            
         }
     }
 }

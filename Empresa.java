@@ -44,7 +44,7 @@ public class Empresa{
     }
 
     public void agregarCliente(String nombreCliente, String nombrePlan, int deuda ,String rut){
-        Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, rut, deuda);
+        Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, deuda, rut);
         if( listaClientes.indexOf(clienteNuevo) != -1){
             System.out.println("El cliente ya existe");
             clienteNuevo = null;
