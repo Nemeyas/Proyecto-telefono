@@ -20,6 +20,7 @@ public class Menu {
     System.out.println("6. Buscar Cliente");
     System.out.println("7. Agregar plan a cliente existente");
     System.out.println("8. Salir del programa y borrar la empresa");
+    System.out.println("9. Testeo de casting");
     System.out.println(barra);
   }
 
