@@ -1,7 +1,7 @@
 //package Empresa;
 //package Planes;
 
-import java.io.IOException;
+import java.io.*;
 
 public class Main{
 
@@ -13,7 +13,7 @@ public class Main{
           menu.menu();
           String opcion = menu.opcion();
             if (opcion.equals("1")){
-                empresa.crearPlan(menu.leerPrecio(), menu.leerGigas(), menu.leerMinutos(), menu.leerNombrePlan(1));
+                empresa.crearPlan(menu.leerNombrePlan(1), menu.leerPrecio(), menu.leerGigas(), menu.leerMinutos());
             }
             else if (opcion.equals("2")){
                 empresa.agregarCliente(menu.leerNombreCliente(2), menu.leerNombrePlan(2), menu.leerMonto(), menu.leerRut());

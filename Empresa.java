@@ -5,13 +5,15 @@ public class Empresa{
     
   //private Planes planes;
     private Hashtable<String,Planes> tablaHash;
-    private ArrayList<Planes> lista;
+    //private ArrayList<Planes> lista;
+    private ArrayList<String> listaNombreHash;
     private ArrayList<Clientes> listaClientes;
     private String nombreDeLaEmpresa;
   
     public Empresa(String nombreEmpresa){
       tablaHash = new Hashtable<String,Planes>();
-      lista = new ArrayList<Planes>();
+      //lista = new ArrayList<Planes>();
+      listaNombreHash = new ArrayList<String>();
       listaClientes = new ArrayList<Clientes>();
       nombreDeLaEmpresa = nombreEmpresa;
     }
@@ -53,13 +55,13 @@ public class Empresa{
         tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
         listaClientes.add(clienteNuevo);
     }
-    
-    public void crearPlan(int valorPlan, int cantGigas, int cantMinutos, String PlanNombre) {
+    //public void crearPlan(String PlanNombre, int valorPlan, int cantMinutos, int cantGigas)
+    public void crearPlan(String PlanNombre, int valorPlan, int cantMinutos, int cantGigas) {
       Planes plan2 = new Planes(valorPlan, cantGigas, cantMinutos, PlanNombre);
-      if(lista.contains(plan2)){
+      if(listaNombreHash.contains(PlanNombre)){
         return;
       }
-      lista.add(plan2);
+      listaNombreHash.add(PlanNombre);
       tablaHash.put(PlanNombre, plan2);
     }
 
@@ -69,9 +71,9 @@ public class Empresa{
             return;
         }
         
-        for (int i = 0 ; i < lista.size() ; i++){
-            if (nombrePlan.equals(lista.get(i).mostrarNombreR())){
-                lista.remove(lista.get(i));
+        for (int i = 0 ; i < listaNombreHash.size() ; i++){
+            if (nombrePlan.equals(listaNombreHash.get(i))){
+                listaNombreHash.remove(listaNombreHash.get(i));
             } 
         }
         tablaHash.remove(nombrePlan);
@@ -94,19 +96,15 @@ public class Empresa{
     }*/
 
     public void mostrar(String nombreDelPlan){
-      for( int i = 0 ; i< lista.size() ; i++){
-        if(nombreDelPlan.equals(lista.get(i).mostrarNombreR())){
-          lista.get(i).mostrarPlan();
-        }
+      if(  tablaHash.get(nombreDelPlan) != null){
+        tablaHash.get(nombreDelPlan).mostrarPlan();
       }
-
     }
 
     public void mostrar(){
         System.out.println(nombreDeLaEmpresa);
-        for (int i = 0 ; i < lista.size() ; i++){
-          lista.get(i).mostrarPlan();
-          lista.get(i).mostrarClientes();
+        for (int i = 0 ; i < listaNombreHash.size() ; i++){
+          tablaHash.get(listaNombreHash.get(i)).mostrarPlan();
       }
     }
   
