@@ -1,9 +1,9 @@
 import java.io.*;
 
-public class Menu{
+public class Menu {
   BufferedReader lector;
   String barra = "----------------------------------";
-  public Menu(){
+  public Menu()throws IOException{
     lector = new BufferedReader(new InputStreamReader(System.in));
   }
   
@@ -105,7 +105,7 @@ public class Menu{
     return rut;
   }
 
-  public void opcionInvalida(){
+  public void opcionInvalida()throws IOException{
     System.out.println("Ingrese una opcion valida");
   }
   public void finalPrograma(){
