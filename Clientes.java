@@ -14,6 +14,12 @@ public class Clientes {
         this.deuda = deuda;
         
     }
+    public String getNombre(){
+        return nombre;
+    }
+    public int tallaListaPlanes(){
+        return planes.size();
+    }
 
     
     public void mostrar(){

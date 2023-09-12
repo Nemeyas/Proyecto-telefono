@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 public class Menu {
   BufferedReader lector;
@@ -40,7 +41,7 @@ public class Menu {
     }
     return "hola";
   }
-  
+
   public String leerNombrePlan(int opcion) throws IOException{
     if(opcion == 1){
       System.out.println("Ingrese el nombre del plan");
@@ -122,5 +123,13 @@ public class Menu {
     System.out.println("Ingrese el nombre de la empresa");
     String nombreEmpresa = lector.readLine();
     return nombreEmpresa;
+  }
+
+  public void mostrarNombreLista(Object lista){
+    ArrayList lista2 = (ArrayList) lista;
+    for (int i = 0 ; i < lista2.size()  ; i++){
+      System.out.println("hola  " + ((String)lista2.get(i)));
+    }
+
   }
 }

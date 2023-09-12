@@ -22,6 +22,10 @@ public class Empresa{
         System.out.println(nombreDeLaEmpresa);
     }
 
+    public Object retornarLista(){
+      return listaNombreHash;
+    }
+
     public void mostrarCliente(String nombreCliente){
       for( int i = 0 ; i < listaClientes.size() ; i++){
         if( nombreCliente.equals(listaClientes.get(i).nombreCliente())){

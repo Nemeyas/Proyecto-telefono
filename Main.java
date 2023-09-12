@@ -37,6 +37,10 @@ public class Main{
               menu.finalPrograma();
               return;
             }
+            else if(opcion.equals("9")){
+                menu.mostrarNombreLista(empresa.retornarLista());
+
+            }
             else{
                 menu.opcionInvalida();
             }
