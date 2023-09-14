@@ -2,7 +2,6 @@
 import java.util.*;
 
 public class Empresa{
-    
   //private Planes planes;
     private Hashtable<String,Planes> tablaHash;
     //private ArrayList<Planes> lista;
@@ -18,17 +17,41 @@ public class Empresa{
       nombreDeLaEmpresa = nombreEmpresa;
     }
 
-    public void mostrarNombre(){
-        System.out.println(nombreDeLaEmpresa);
+    public int cantidadPlanes(){
+      return listaNombreHash.size();
+    }
+
+    public String listaNombrePlanes(int i){
+      return listaNombreHash.get(i);
+    }
+
+    public String mostrarNombre(){
+      return nombreDeLaEmpresa;
     }
 
     public Object retornarLista(){
       return listaNombreHash;
     }
 
+    public int getMonto(String clave){
+      return tablaHash.get(clave).getMonto();
+    }
+
+    public int getGigas(String clave){
+      return tablaHash.get(clave).getGigas();
+    }
+
+    public int getMinutos(String clave){
+      return tablaHash.get(clave).getMinutos();
+    }
+
+    public ArrayList<String> getListClientes(String clave){
+      return tablaHash.get(clave).getListClientes();
+    }
+
     public void mostrarCliente(String nombreCliente){
       for( int i = 0 ; i < listaClientes.size() ; i++){
-        if( nombreCliente.equals(listaClientes.get(i).nombreCliente())){
+        if( nombreCliente.equals(listaClientes.get(i).getNombre())){
           listaClientes.get(i).mostrar();
         }
       }
@@ -36,7 +59,7 @@ public class Empresa{
 
     public void agregarPlanCliente(String nombreCliente, String nombrePlan){
       for(int i=0; i<listaClientes.size(); i++){
-        if(nombreCliente.equals(listaClientes.get(i).nombreCliente())){
+        if(nombreCliente.equals(listaClientes.get(i).getNombre())){
           if(tablaHash.get(nombrePlan) != null){
             listaClientes.get(i).agregarPlan(nombrePlan);
             tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
@@ -98,18 +121,5 @@ public class Empresa{
         listaClientes.remove(listaClientes.get(i));
       }
     }*/
-
-    public void mostrar(String nombreDelPlan){
-      if(  tablaHash.get(nombreDelPlan) != null){
-        tablaHash.get(nombreDelPlan).mostrarPlan();
-      }
-    }
-
-    public void mostrar(){
-        System.out.println(nombreDeLaEmpresa);
-        for (int i = 0 ; i < listaNombreHash.size() ; i++){
-          tablaHash.get(listaNombreHash.get(i)).mostrarPlan();
-      }
-    }
   
 }

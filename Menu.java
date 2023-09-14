@@ -131,6 +131,39 @@ public class Menu {
     for (int i = 0 ; i < lista2.size()  ; i++){
       System.out.println("hola  " + ((String)lista2.get(i)));
     }
-
   }
+
+
+    public void mostrarNombreEmpresa(String nombreEmpresa){
+      System.out.println("Nombre de la empresa : " + nombreEmpresa);
+
+    }
+
+  public void mostrarNombrePlan(String nombrePlan, int monto, int gigas, int minutos, ArrayList<String> clientes){
+    System.out.println("");
+    System.out.println("Nombre del plan : " + nombrePlan);
+    System.out.println("Monto : " + monto);
+    System.out.println("Gigas : " + gigas);
+    System.out.println("Minutos : " + minutos);
+    System.out.println("");
+    System.out.println("Clientes: ");
+    for( int i = 0 ; i < clientes.size() ; i++){
+      System.out.println("- " + clientes.get(i));
+    }
+  }
+
+  public void buscarPlan(String nombrePlan, int monto, int gigas, int minutos){
+    System.out.println("");
+    System.out.println("Nombre del plan : " + nombrePlan);
+    System.out.println("Monto : " + monto);
+    System.out.println("Gigas : " + gigas);
+    System.out.println("Minutos : " + minutos);
+    System.out.println("");
+  }
+
+
+
+
+
+
 }

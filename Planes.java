@@ -16,8 +16,24 @@ public class Planes{
         nombreDelPlan = PlanNombre;
     }
 
-    public String mostrarNombreR(){
+    public String getNombreDelPlan(){
         return nombreDelPlan;
+    }
+
+    public int getMonto(){
+        return monto;
+    }
+
+    public int getGigas(){
+        return gigas;
+    }
+
+    public int getMinutos(){
+        return minutos;
+    }
+
+    public ArrayList<String> getListClientes(){
+        return clientes;
     }
 
     public void agregarClientePlan(String nombre){

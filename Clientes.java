@@ -4,7 +4,7 @@ public class Clientes {
     private String nombre;
     private String rut;
     private int deuda;
-    private ArrayList<String> planes = new ArrayList<String>();
+    private ArrayList<String> planes;
 
     public Clientes(String nombreCliente, String nombrePlan,int deuda ,String rut){
         nombre = nombreCliente;
@@ -14,14 +14,19 @@ public class Clientes {
         this.deuda = deuda;
         
     }
+
     public String getNombre(){
         return nombre;
     }
-    public int tallaListaPlanes(){
-        return planes.size();
+
+    public String getRut(){
+        return rut;
     }
 
-    
+    public int getDeuda(){
+        return deuda;
+    }
+
     public void mostrar(){
         System.out.println("Cliente : " + nombre);
         if ( planes.size() != 0){
@@ -35,10 +40,6 @@ public class Clientes {
             System.out.println("El cliente no tiene planes");
         }
         
-    }
-
-    public String nombreCliente(){
-        return nombre;
     }
     
     public String encontrarPlan(String nombrePlan){

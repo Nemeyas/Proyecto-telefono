@@ -8,7 +8,6 @@ public class Main{
     public static void main(String[] args)throws IOException{
       Menu menu = new Menu();
       Empresa empresa = new Empresa(menu.leerNombreEmpresa());
-
         while(true){
           menu.menu();
           String opcion = menu.opcion();
@@ -22,10 +21,14 @@ public class Main{
                 empresa.eliminarPlan(menu.leerNombrePlan(3));
             }
             else if (opcion.equals("4")){
-                empresa.mostrar();
+                menu.mostrarNombreEmpresa(empresa.mostrarNombre());
+                for(int i = 0 ; i < empresa.cantidadPlanes() ; i++){
+                    menu.mostrarNombrePlan(empresa.listaNombrePlanes(i), empresa.getMonto(empresa.listaNombrePlanes(i)), empresa.getGigas(empresa.listaNombrePlanes(i)), empresa.getMinutos(empresa.listaNombrePlanes(i)), empresa.getListClientes(empresa.listaNombrePlanes(i)));
+                }
             }
             else if (opcion.equals("5")){
-                empresa.mostrar(menu.leerNombrePlan(5));
+                String nombrePlan = menu.leerNombrePlan(5);
+                menu.buscarPlan(nombrePlan, empresa.getMonto(nombrePlan), empresa.getGigas(nombrePlan), empresa.getMinutos(nombrePlan));
             }
             else if (opcion.equals("6")){
                 empresa.mostrarCliente(menu.leerNombreCliente(6));
