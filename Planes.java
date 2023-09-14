@@ -16,22 +16,23 @@ public class Planes{
         nombreDelPlan = PlanNombre;
     }
 
+    //funcion que retorna el nombre del plan
     public String getNombreDelPlan(){
         return nombreDelPlan;
     }
-
+    //funcion que retorna el monto del plan
     public int getMonto(){
         return monto;
     }
-
+    //funcion que retorna los gigas del plan
     public int getGigas(){
         return gigas;
     }
-
+    //funcion que retorna los minutos del plan
     public int getMinutos(){
         return minutos;
     }
-
+    //funcion que retorna la lista de clientes del plan
     public ArrayList<String> getListClientes(){
         return clientes;
     }

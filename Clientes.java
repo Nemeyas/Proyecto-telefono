@@ -14,19 +14,19 @@ public class Clientes {
         this.deuda = deuda;
         
     }
-
+    //funcion que retorna el nombre del cliente
     public String getNombre(){
         return nombre;
     }
-
+    //funcion que retorna el rut del cliente
     public String getRut(){
         return rut;
     }
-
+    //funcion que retorna la deuda de un cliente
     public int getDeuda(){
         return deuda;
     }
-
+    //funcion que retorna la lista de planes de un cliente
     public ArrayList<String> getPlanesCliente(){
         return planes;
     }

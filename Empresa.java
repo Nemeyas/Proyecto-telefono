@@ -17,6 +17,8 @@ public class Empresa{
       nombreDeLaEmpresa = nombreEmpresa;
     }
 
+
+    //funcion que retorna true si existe un plan o false si no existe
     public Boolean existePlan(String nombrePlan){
       if(listaNombreHash.contains(nombrePlan) == true){
         return true;
@@ -25,15 +27,15 @@ public class Empresa{
         return false;
       }
     }
-    
+    //funcion que retorna la cantidad de planes
     public int cantidadPlanes(){
       return listaNombreHash.size();
     }
-
+    //funcion que retorna el nombre de un plan de la lista de la casilla ingresada
     public String listaNombrePlanes(int i){
       return listaNombreHash.get(i);
     }
-
+    //funcion que retorna el nombre de la empresa
     public String mostrarNombre(){
       return nombreDeLaEmpresa;
     }
@@ -41,39 +43,39 @@ public class Empresa{
     public Object retornarLista(){
       return listaNombreHash;
     }
-
+    //funcion que retorna el monto del plan mediante el hashTable
     public int getMonto(String clave){
       return tablaHash.get(clave).getMonto();
     }
-
+    //funcion que retorna los gigas del plan mediante el hashTable
     public int getGigas(String clave){
       return tablaHash.get(clave).getGigas();
     }
-
+    //funcion que retorna los minutos del plan mediante el hashTable
     public int getMinutos(String clave){
       return tablaHash.get(clave).getMinutos();
     }
-
+    //funcion que retorna la lista de clientes de un plan mediante el hashTable
     public ArrayList<String> getListClientes(String clave){
       return tablaHash.get(clave).getListClientes();
     }
-
+    //funcion que retorna el nombre de un cliente mediante la lista de clientes
     public String getNombreCliente(int i){
       return listaClientes.get(i).getNombre();
     }
-
+    //funcion que retorna el rut de un cliente mediante la lista de clientes
     public String getClienteRut(int i ){
       return listaClientes.get(i).getRut();
     }
-
+    //funcion que retorna la deuda de un cliente mediante la lista de clientes
     public int getClienteDeuda(int i ){
       return listaClientes.get(i).getDeuda();
     }
-
+    //funcion que retorna la lista de planes de un cliente meidante la lista de clientes
     public ArrayList<String> getClientePlanes(int i){
       return listaClientes.get(i).getPlanesCliente();
     }
-
+    //funcion que retorna la posicion de un cliente en la lista, esta retorna -1 si no se encuentra
     public int posicionClienteLista(String nombreCliente){
       for(int i = 0 ; i < listaClientes.size() ; i++){
         if( nombreCliente.equals(listaClientes.get(i).getNombre())){
