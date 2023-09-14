@@ -17,6 +17,15 @@ public class Empresa{
       nombreDeLaEmpresa = nombreEmpresa;
     }
 
+    public Boolean existePlan(String nombrePlan){
+      if(listaNombreHash.contains(nombrePlan) == true){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+    
     public int cantidadPlanes(){
       return listaNombreHash.size();
     }
@@ -49,13 +58,39 @@ public class Empresa{
       return tablaHash.get(clave).getListClientes();
     }
 
-    public void mostrarCliente(String nombreCliente){
+    public String getNombreCliente(int i){
+      return listaClientes.get(i).getNombre();
+    }
+
+    public String getClienteRut(int i ){
+      return listaClientes.get(i).getRut();
+    }
+
+    public int getClienteDeuda(int i ){
+      return listaClientes.get(i).getDeuda();
+    }
+
+    public ArrayList<String> getClientePlanes(int i){
+      return listaClientes.get(i).getPlanesCliente();
+    }
+
+    public int posicionClienteLista(String nombreCliente){
+      for(int i = 0 ; i < listaClientes.size() ; i++){
+        if( nombreCliente.equals(listaClientes.get(i).getNombre())){
+          return i;
+        }
+      }
+      return -1;
+    }
+
+
+    /*public void mostrarCliente(String nombreCliente){
       for( int i = 0 ; i < listaClientes.size() ; i++){
         if( nombreCliente.equals(listaClientes.get(i).getNombre())){
           listaClientes.get(i).mostrar();
         }
       }
-    }
+    }*/
 
     public void agregarPlanCliente(String nombreCliente, String nombrePlan){
       for(int i=0; i<listaClientes.size(); i++){
@@ -69,7 +104,6 @@ public class Empresa{
 
         }
       }
-      System.out.println("El cliente ingresado no existe");
     }
 
     public void agregarCliente(String nombreCliente, String nombrePlan, int deuda ,String rut){

@@ -134,10 +134,10 @@ public class Menu {
   }
 
 
-    public void mostrarNombreEmpresa(String nombreEmpresa){
-      System.out.println("Nombre de la empresa : " + nombreEmpresa);
 
-    }
+  public void mostrarNombreEmpresa(String nombreEmpresa){
+    System.out.println("Nombre de la empresa : " + nombreEmpresa);
+  }
 
   public void mostrarNombrePlan(String nombrePlan, int monto, int gigas, int minutos, ArrayList<String> clientes){
     System.out.println("");
@@ -161,9 +161,22 @@ public class Menu {
     System.out.println("");
   }
 
+  public void noExistePlan(String nombrePlan){
+    System.out.println("El plan : " + nombrePlan + " no Existe");
+  }
 
+  public void clienteNoExiste(String nombreCliente){
+    System.out.println("El Cliente " + nombreCliente + " no existe");
+  }
 
+  public void mostrarCliente(String nombre, String rut, int deuda, ArrayList<String> planes){
+    System.out.println("Nombre del Cliente : " + nombre);
+    System.out.println("Rut : " + rut);
+    System.out.println("Deuda : " + deuda);
+    System.out.println("Planes Contratados : ");
+    for( int i = 0 ; i < planes.size() ; i++){
+      System.out.println("- " + planes.get(i));
+    }
 
-
-
+  }
 }

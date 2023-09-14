@@ -27,7 +27,11 @@ public class Clientes {
         return deuda;
     }
 
-    public void mostrar(){
+    public ArrayList<String> getPlanesCliente(){
+        return planes;
+    }
+
+    /*public void mostrar(){
         System.out.println("Cliente : " + nombre);
         if ( planes.size() != 0){
             System.out.print("Planes : ");
@@ -40,7 +44,7 @@ public class Clientes {
             System.out.println("El cliente no tiene planes");
         }
         
-    }
+    }*/
     
     public String encontrarPlan(String nombrePlan){
         int indexPlan = planes.indexOf(nombrePlan);

@@ -28,13 +28,42 @@ public class Main{
             }
             else if (opcion.equals("5")){
                 String nombrePlan = menu.leerNombrePlan(5);
-                menu.buscarPlan(nombrePlan, empresa.getMonto(nombrePlan), empresa.getGigas(nombrePlan), empresa.getMinutos(nombrePlan));
+                if(empresa.existePlan(nombrePlan) == true){
+                    menu.buscarPlan(nombrePlan, empresa.getMonto(nombrePlan), empresa.getGigas(nombrePlan), empresa.getMinutos(nombrePlan));
+                }
+                else{
+                    menu.noExistePlan(nombrePlan);
+                }
+                
             }
             else if (opcion.equals("6")){
-                empresa.mostrarCliente(menu.leerNombreCliente(6));
+                String nombreCliente = menu.leerNombreCliente(6);
+                int posicionCliente = empresa.posicionClienteLista(nombreCliente);
+                if( posicionCliente == -1){
+                    menu.clienteNoExiste(nombreCliente);
+                }
+                else{
+                    menu.mostrarCliente(empresa.getNombreCliente(posicionCliente), empresa.getClienteRut(posicionCliente), empresa.getClienteDeuda(posicionCliente), empresa.getClientePlanes(posicionCliente));
+                }
             }
             else if (opcion.equals("7")){
-              empresa.agregarPlanCliente(menu.leerNombreCliente(7), menu.leerNombrePlan(7));
+                String nombreCliente = menu.leerNombreCliente(7);
+                int posicionCliente = empresa.posicionClienteLista(nombreCliente);
+                String nombrePlan = menu.leerNombrePlan(7);
+                if( posicionCliente == -1 && empresa.existePlan(nombrePlan) == false){
+                    menu.clienteNoExiste(nombreCliente);
+                    menu.noExistePlan(nombrePlan);
+                }
+                else if ( empresa.existePlan(nombrePlan) == false){
+                    menu.noExistePlan(nombrePlan);
+                }
+                else if( posicionCliente == -1){
+                    menu.clienteNoExiste(nombreCliente);
+                }
+                else{
+                    empresa.agregarPlanCliente(nombreCliente, nombrePlan);
+                }
+
             }
             else if (opcion.equals("8")){
               menu.finalPrograma();
