@@ -54,20 +54,5 @@ public class Planes{
             clientes.remove(clientes.get(i));
         }
     }
-
-    public void mostrarPlan(){
-        System.out.println("");
-        System.out.println(nombreDelPlan);
-        System.out.println(monto);
-        System.out.println(gigas);
-        System.out.println(minutos);
-    }
-
-    public void mostrarClientes(){
-        System.out.println("Clientes:");
-        for ( int i = 0 ; i < clientes.size(); i++){
-            System.out.println(clientes.get(i));
-        }
-    }
-
+    
 }

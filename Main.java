@@ -12,7 +12,13 @@ public class Main{
           menu.menu();
           String opcion = menu.opcion();
             if (opcion.equals("1")){
-                empresa.crearPlan(menu.leerNombrePlan(1), menu.leerPrecio(), menu.leerGigas(), menu.leerMinutos());
+                String nombrePlan = menu.leerNombrePlan(1);
+                if(empresa.existePlan(nombrePlan) == false){
+                    empresa.crearPlan(nombrePlan, menu.leerPrecio(), menu.leerGigas(), menu.leerMinutos());
+                }
+                else{
+                    menu.existePlan(nombrePlan);
+                }
             }
             else if (opcion.equals("2")){
                 String nombreCliente = menu.leerNombreCliente(2);
@@ -54,25 +60,24 @@ public class Main{
             else if (opcion.equals("7")){
                 String nombreCliente = menu.leerNombreCliente(7);
                 int posicionCliente = empresa.posicionClienteLista(nombreCliente);
-                String nombrePlan = menu.leerNombrePlan(7);
-                Boolean tienePlan = empresa.existePlanCliente(nombrePlan);
-                if( posicionCliente == -1 && empresa.existePlan(nombrePlan) == false){
-                    menu.clienteNoExiste(nombreCliente);
-                    menu.noExistePlan(nombrePlan);
-                }
-                else if ( empresa.existePlan(nombrePlan) == false){
-                    menu.noExistePlan(nombrePlan);
-                }
-                else if( posicionCliente == -1){
-                    menu.clienteNoExiste(nombreCliente);
-                }
-                else if( tienePlan == true){
-                    menu.tienePlan(nombrePlan);
+                if( posicionCliente != -1 ){
+                    String nombrePlan = menu.leerNombrePlan(7);
+                    Boolean tienePlan = empresa.existePlanCliente(nombrePlan);
+                    if(empresa.existePlan(nombrePlan) == true){
+                        if( tienePlan == false ){
+                            empresa.agregarPlanCliente(nombreCliente, nombrePlan,posicionCliente);
+                        }
+                        else{
+                            menu.tienePlan(nombrePlan);
+                        }
+                    }
+                    else{
+                        menu.noExistePlan(nombrePlan);
+                    }
                 }
                 else{
-                    empresa.agregarPlanCliente(nombreCliente, nombrePlan,posicionCliente);
+                    menu.clienteNoExiste(nombreCliente);
                 }
-
             }
             else if (opcion.equals("8")){
               menu.finalPrograma();

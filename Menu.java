@@ -177,4 +177,8 @@ public class Menu {
   public void tienePlan(String nombrePlan){
     System.out.println("El cliente ingresado ya posee el plan : " + nombrePlan);
   }
+
+  public void existePlan(String nombrePlan){
+    System.out.println("El plan : " + nombrePlan + " ya existe");
+  }
 }

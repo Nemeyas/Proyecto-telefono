@@ -116,11 +116,6 @@ public class Empresa{
     }
 
     public void eliminarPlan(String nombrePlan){
-        if( tablaHash.get(nombrePlan) == null){
-            System.out.println("No existe el plan");
-            return;
-        }
-        
         for (int i = 0 ; i < listaNombreHash.size() ; i++){
             if (nombrePlan.equals(listaNombreHash.get(i))){
                 listaNombreHash.remove(listaNombreHash.get(i));
