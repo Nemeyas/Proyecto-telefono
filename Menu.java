@@ -20,7 +20,6 @@ public class Menu {
     System.out.println("6. Buscar Cliente");
     System.out.println("7. Agregar plan a cliente existente");
     System.out.println("8. Salir del programa y borrar la empresa");
-    System.out.println("9. Testeo de casting");
     System.out.println(barra);
   }
 
@@ -126,15 +125,6 @@ public class Menu {
     return nombreEmpresa;
   }
 
-  public void mostrarNombreLista(Object lista){
-    ArrayList lista2 = (ArrayList) lista;
-    for (int i = 0 ; i < lista2.size()  ; i++){
-      System.out.println("hola  " + ((String)lista2.get(i)));
-    }
-  }
-
-
-
   public void mostrarNombreEmpresa(String nombreEmpresa){
     System.out.println("Nombre de la empresa : " + nombreEmpresa);
   }
@@ -178,5 +168,13 @@ public class Menu {
       System.out.println("- " + planes.get(i));
     }
 
+  }
+
+  public void existeCliente(String nombreCliente){
+    System.out.println("El cliente " + nombreCliente + " Ya existe" );
+  }
+
+  public void tienePlan(String nombrePlan){
+    System.out.println("El cliente ingresado ya posee el plan : " + nombrePlan);
   }
 }

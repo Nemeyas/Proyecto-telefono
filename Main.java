@@ -15,7 +15,13 @@ public class Main{
                 empresa.crearPlan(menu.leerNombrePlan(1), menu.leerPrecio(), menu.leerGigas(), menu.leerMinutos());
             }
             else if (opcion.equals("2")){
-                empresa.agregarCliente(menu.leerNombreCliente(2), menu.leerNombrePlan(2), menu.leerMonto(), menu.leerRut());
+                String nombreCliente = menu.leerNombreCliente(2);
+                if(empresa.existeCliente(nombreCliente)){
+                    menu.existeCliente(nombreCliente);
+                }
+                else{
+                    empresa.agregarCliente(nombreCliente, menu.leerNombrePlan(2), menu.leerMonto(), menu.leerRut());
+                }
             }
             else if (opcion.equals("3")){
                 empresa.eliminarPlan(menu.leerNombrePlan(3));
@@ -34,7 +40,6 @@ public class Main{
                 else{
                     menu.noExistePlan(nombrePlan);
                 }
-                
             }
             else if (opcion.equals("6")){
                 String nombreCliente = menu.leerNombreCliente(6);
@@ -50,6 +55,7 @@ public class Main{
                 String nombreCliente = menu.leerNombreCliente(7);
                 int posicionCliente = empresa.posicionClienteLista(nombreCliente);
                 String nombrePlan = menu.leerNombrePlan(7);
+                Boolean tienePlan = empresa.existePlanCliente(nombrePlan);
                 if( posicionCliente == -1 && empresa.existePlan(nombrePlan) == false){
                     menu.clienteNoExiste(nombreCliente);
                     menu.noExistePlan(nombrePlan);
@@ -60,18 +66,17 @@ public class Main{
                 else if( posicionCliente == -1){
                     menu.clienteNoExiste(nombreCliente);
                 }
+                else if( tienePlan == true){
+                    menu.tienePlan(nombrePlan);
+                }
                 else{
-                    empresa.agregarPlanCliente(nombreCliente, nombrePlan);
+                    empresa.agregarPlanCliente(nombreCliente, nombrePlan,posicionCliente);
                 }
 
             }
             else if (opcion.equals("8")){
               menu.finalPrograma();
               return;
-            }
-            else if(opcion.equals("9")){
-                menu.mostrarNombreLista(empresa.retornarLista());
-
             }
             else{
                 menu.opcionInvalida();

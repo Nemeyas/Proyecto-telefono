@@ -31,21 +31,10 @@ public class Clientes {
         return planes;
     }
 
-    /*public void mostrar(){
-        System.out.println("Cliente : " + nombre);
-        if ( planes.size() != 0){
-            System.out.print("Planes : ");
-            for( int i = 0 ; i < planes.size() ; i++){
-            System.out.print(planes.get(i) + " ");
-            }
-            System.out.println(" ");    
-        }
-        else{
-            System.out.println("El cliente no tiene planes");
-        }
-        
-    }*/
-    
+    public Boolean tienePlan(String nombrePlan){
+        return planes.contains(nombrePlan);
+    }
+
     public String encontrarPlan(String nombrePlan){
         int indexPlan = planes.indexOf(nombrePlan);
         if(indexPlan != -1){
@@ -65,12 +54,6 @@ public class Clientes {
     }
 
     public void agregarPlan(String nombrePlan){
-        for(int i = 0 ; i < planes.size() ; i++){
-            if(nombrePlan.equals(planes.get(i))){
-                System.out.println("El cliente ya posee este plan");
-                return;
-            }
-        }
         planes.add(nombrePlan);
     }
 }

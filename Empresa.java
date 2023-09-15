@@ -2,21 +2,26 @@
 import java.util.*;
 
 public class Empresa{
-  //private Planes planes;
     private Hashtable<String,Planes> tablaHash;
-    //private ArrayList<Planes> lista;
     private ArrayList<String> listaNombreHash;
     private ArrayList<Clientes> listaClientes;
     private String nombreDeLaEmpresa;
   
     public Empresa(String nombreEmpresa){
       tablaHash = new Hashtable<String,Planes>();
-      //lista = new ArrayList<Planes>();
       listaNombreHash = new ArrayList<String>();
       listaClientes = new ArrayList<Clientes>();
       nombreDeLaEmpresa = nombreEmpresa;
     }
-
+    //funcion que retorna true si ya existe un cliente o false si no 
+    public Boolean existeCliente(String nombreCliente){
+      for( int i = 0 ; i < listaClientes.size(); i++){
+        if(nombreCliente.equals(listaClientes.get(i).getNombre())){
+          return true;
+        }
+      }
+      return false;
+    }
 
     //funcion que retorna true si existe un plan o false si no existe
     public Boolean existePlan(String nombrePlan){
@@ -38,10 +43,6 @@ public class Empresa{
     //funcion que retorna el nombre de la empresa
     public String mostrarNombre(){
       return nombreDeLaEmpresa;
-    }
-
-    public Object retornarLista(){
-      return listaNombreHash;
     }
     //funcion que retorna el monto del plan mediante el hashTable
     public int getMonto(String clave){
@@ -84,41 +85,27 @@ public class Empresa{
       }
       return -1;
     }
-
-
-    /*public void mostrarCliente(String nombreCliente){
-      for( int i = 0 ; i < listaClientes.size() ; i++){
-        if( nombreCliente.equals(listaClientes.get(i).getNombre())){
-          listaClientes.get(i).mostrar();
+    //funcion que retorna true si existe un plan dentro de un cliente o false si no
+    public Boolean existePlanCliente(String nombrePlan){
+      for(int i = 0 ; i < listaClientes.size() ; i++){
+        if( listaClientes.get(i).tienePlan(nombrePlan)){
+          return true;
         }
       }
-    }*/
+      return false;
+    }
 
-    public void agregarPlanCliente(String nombreCliente, String nombrePlan){
-      for(int i=0; i<listaClientes.size(); i++){
-        if(nombreCliente.equals(listaClientes.get(i).getNombre())){
-          if(tablaHash.get(nombrePlan) != null){
-            listaClientes.get(i).agregarPlan(nombrePlan);
-            tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
-            return;
-
-          }
-
-        }
-      }
+    public void agregarPlanCliente(String nombreCliente, String nombrePlan, int posicionCliente){
+      listaClientes.get(posicionCliente).agregarPlan(nombrePlan);
+      tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
     }
 
     public void agregarCliente(String nombreCliente, String nombrePlan, int deuda ,String rut){
-        Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, deuda, rut);
-        if( listaClientes.indexOf(clienteNuevo) != -1){
-            System.out.println("El cliente ya existe");
-            clienteNuevo = null;
-            return;
-        }
-        tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
-        listaClientes.add(clienteNuevo);
+      Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, deuda, rut);
+      tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
+      listaClientes.add(clienteNuevo);
     }
-    //public void crearPlan(String PlanNombre, int valorPlan, int cantMinutos, int cantGigas)
+ 
     public void crearPlan(String PlanNombre, int valorPlan, int cantMinutos, int cantGigas) {
       Planes plan2 = new Planes(valorPlan, cantGigas, cantMinutos, PlanNombre);
       if(listaNombreHash.contains(PlanNombre)){
