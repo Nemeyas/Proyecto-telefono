@@ -22,11 +22,17 @@ public class Main{
             }
             else if (opcion.equals("2")){
                 String nombreCliente = menu.leerNombreCliente(2);
-                if(empresa.existeCliente(nombreCliente)){
-                    menu.existeCliente(nombreCliente);
+                if(empresa.existeCliente(nombreCliente) == false){
+                    String nombrePlan = menu.leerNombrePlan(2);
+                    if( empresa.existePlan(nombrePlan) == true){
+                        empresa.agregarCliente(nombreCliente, nombrePlan, menu.leerMonto(), menu.leerRut());
+                    }
+                    else{
+                        menu.noExistePlan(nombrePlan);
+                    }
                 }
                 else{
-                    empresa.agregarCliente(nombreCliente, menu.leerNombrePlan(2), menu.leerMonto(), menu.leerRut());
+                    menu.existeCliente(nombreCliente);
                 }
             }
             else if (opcion.equals("3")){
@@ -80,8 +86,43 @@ public class Main{
                 }
             }
             else if (opcion.equals("8")){
-              menu.finalPrograma();
-              return;
+                String nombreCliente = menu.leerNombreCliente(8);
+                if( empresa.existeCliente(nombreCliente)){
+                    empresa.eliminarCliente(nombreCliente);
+                }
+                else{
+                    menu.clienteNoExiste(nombreCliente);
+                }
+            }
+            else if(opcion.equals("9")){
+                String nombreCliente = menu.leerNombreCliente(9);
+                if(empresa.existeCliente(nombreCliente)){
+                    String nombrePlan = menu.leerNombrePlan(9);
+                    if(empresa.existePlan(nombrePlan)){
+                        if(empresa.existePlanCliente(nombrePlan)){
+                            empresa.eliminarCliente(nombreCliente, nombrePlan);
+                        }
+                        else{
+                            menu.noExistePlan(nombrePlan, nombreCliente);
+                        }
+                    }
+                    else{
+                        menu.noExistePlan(nombrePlan);
+                    }
+                }
+                else{
+                    menu.clienteNoExiste(nombreCliente);
+                }
+            }
+            else if(opcion.equals("10")){
+
+            }
+            else if(opcion.equals("11")){
+
+            }
+            else if(opcion.equals("12")){
+                menu.finalPrograma();
+                return;
             }
             else{
                 menu.opcionInvalida();

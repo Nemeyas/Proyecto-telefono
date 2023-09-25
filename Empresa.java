@@ -115,7 +115,35 @@ public class Empresa{
       tablaHash.put(PlanNombre, plan2);
     }
 
+    //funcion que elimina un plan de una empresa, si un cliente posee este plan, se le eliminara de su lista de planes tambien
     public void eliminarPlan(String nombrePlan){
+      tablaHash.remove(nombrePlan);
+      int posicion = listaNombreHash.indexOf(nombrePlan);
+      listaNombreHash.remove(posicion);
+      for(int i = 0 ; i < listaClientes.size(); i++){
+        listaClientes.get(i).borrarPlan(nombrePlan);
+      }
+    }
+    //funcion que elimina un cliente de la empresa
+    //sobreCarga
+    public void eliminarCliente(String nombreCliente){
+      int posicion = posicionClienteLista(nombreCliente);
+      listaClientes.remove(posicion);
+      for(int i = 0 ; i < listaNombreHash.size() ; i++){
+        String posicionHash = listaNombreHash.get(i);
+        tablaHash.get(posicionHash).eliminarCliente(nombreCliente);
+      }
+    
+    }
+    //funcion que elimina un plan de un cliente
+    //sobreCarga
+    public void eliminarCliente(String nombreCliente, String nombrePlan){
+      int posicion = posicionClienteLista(nombreCliente);
+      listaClientes.get(posicion).borrarPlan(nombrePlan);
+      tablaHash.get(nombrePlan).eliminarCliente(nombreCliente);
+    }
+
+    /*public void eliminarPlan(String nombrePlan){
         for (int i = 0 ; i < listaNombreHash.size() ; i++){
             if (nombrePlan.equals(listaNombreHash.get(i))){
                 listaNombreHash.remove(listaNombreHash.get(i));
@@ -128,7 +156,7 @@ public class Empresa{
             listaClientes.remove(listaClientes.get(i));
         } 
       }
-    }
+    }*/
 
 /*    public void eliminarCliente(String nombreCliente){
         //para otro dia
