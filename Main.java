@@ -117,10 +117,13 @@ public class Main{
             else if(opcion.equals("10")){
                 String nombre = "prueba.csv";
                 CSV archivo = new CSV();
-                archivo.Importar(nombre);
+                empresa = archivo.Importar(nombre);
 
             }
             else if(opcion.equals("11")){
+                String nombre = "pruebaEX.csv";
+                CSV archivo2 = new CSV();
+                archivo2.Exportar(nombre, empresa);
 
             }
             else if(opcion.equals("12")){

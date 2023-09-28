@@ -32,6 +32,13 @@ public class Empresa{
         return false;
       }
     }
+
+
+    //funcion que retorna la cantidad de clientes
+    public int cantidadClientes(){
+      return listaClientes.size();
+    }
+
     //funcion que retorna la cantidad de planes
     public int cantidadPlanes(){
       return listaNombreHash.size();
@@ -101,10 +108,11 @@ public class Empresa{
       tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
     }
 
-    public void agregarCliente(String nombreCliente, String nombrePlan, int deuda ,String rut){
+    public Clientes agregarCliente(String nombreCliente, String nombrePlan, int deuda ,String rut){
       Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, deuda, rut);
       tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
       listaClientes.add(clienteNuevo);
+      return clienteNuevo;
     }
  
     public void crearPlan(String PlanNombre, int valorPlan, int cantMinutos, int cantGigas) {
