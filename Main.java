@@ -115,6 +115,9 @@ public class Main{
                 }
             }
             else if(opcion.equals("10")){
+                String nombre = "prueba.csv";
+                CSV archivo = new CSV();
+                archivo.Importar(nombre);
 
             }
             else if(opcion.equals("11")){
