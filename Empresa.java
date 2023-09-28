@@ -116,14 +116,14 @@ public class Empresa{
     public Clientes agregarCliente(String nombreCliente, String nombrePlan, int deuda ,String rut){
       Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, deuda, rut);
       tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
+      //listaClientes.add(clienteNuevo);
       if (existeCliente(nombreCliente) == false) listaClientes.add(clienteNuevo);
       return clienteNuevo;
     }
 
-    public Clientes agregarClienteImportar(String nombreCliente, String nombrePlan, int deuda ,String rut){
-      Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, deuda, rut);
+    public void agregarClienteImportar(String nombreCliente, String nombrePlan, int deuda ,String rut, Clientes cliente){
       tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
-      return clienteNuevo;
+      if (existeCliente(nombreCliente) == false) listaClientes.add(cliente);
     }
  
     public void crearPlan(String PlanNombre, int valorPlan, int cantMinutos, int cantGigas) {

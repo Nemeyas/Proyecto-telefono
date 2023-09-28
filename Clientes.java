@@ -14,6 +14,14 @@ public class Clientes {
         this.deuda = deuda;
         
     }
+
+    public Clientes(String nombreCliente,int deuda ,String rut){
+        nombre = nombreCliente;
+        planes = new ArrayList<String>();
+        this.rut = rut;
+        this.deuda = deuda;
+    }
+
     //funcion que retorna el nombre del cliente
     public String getNombre(){
         return nombre;

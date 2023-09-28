@@ -13,7 +13,6 @@ public class CSV{
     private int cantClientes;
 
 
-    // NO SE POR QUE PUSE CONT, BORRAR EN CASO DE NO ACORDARME A LA BREVEDAD XD
     public Empresa Importar(String FileName) throws IOException{
         lector = new BufferedReader(new FileReader(FileName));
         linea = lector.readLine();
@@ -33,22 +32,6 @@ public class CSV{
             }
         }
 
-        /*while (linea != null){
-            parte = linea.split(",");
-
-            for (int i = 0 ; i < cantPlanes ; i++){
-                leerPlanes(parte);
-                linea = lector.readLine();
-                parte = linea.split(",");
-            }
-            
-            for (int i = 0 ; i < cantClientes ; i++){
-                leerClientes(parte);
-                linea = lector.readLine();
-                parte = linea.split(",");
-            }
-            linea = lector.readLine();
-        }*/
         lector.close();
         return empresa;
     }
@@ -81,13 +64,15 @@ public class CSV{
         String rut = parte[2];
         int cantPlanes = Integer.parseInt(parte[3]);
         String nombrePlan;
-        Clientes cliente = null;
+        Clientes cliente = new Clientes(nombreCliente, deuda, rut);
 
         for (int i = 4 ; i < cantPlanes + 4 ; i++){
             nombrePlan = parte[i];
-            cliente = empresa.agregarCliente(nombreCliente, nombrePlan, deuda, rut);
-            System.out.println(empresa.cantidadClientes());
+            System.out.println(parte[i]);
             cliente.agregarPlan(nombrePlan);
+            empresa.agregarClienteImportar(nombreCliente, nombrePlan, deuda, rut, cliente);
+            System.out.println(empresa.cantidadClientes());
+            //cliente.agregarPlan(nombrePlan);
         }
         //((ArrayList<Clientes>)empresa.getListClientes()).add(cliente);
     }
