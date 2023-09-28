@@ -3,7 +3,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.io.*;
 
 public class CSV{
     private String linea;
@@ -18,29 +17,38 @@ public class CSV{
     public Empresa Importar(String FileName) throws IOException{
         lector = new BufferedReader(new FileReader(FileName));
         linea = lector.readLine();
-        int cont = 0;
-        while (linea != null){
+
+        if (linea != null){
             parte = linea.split(",");
-            if (cont == 0){
-                leerDatosBase(parte);
+            leerDatosBase(parte);
+            for (int i = 0 ; i < cantPlanes ; i++){
+                linea = lector.readLine();
+                parte = linea.split(",");
+                leerPlanes(parte);
             }
-            else if (cont == 1){
-                for (int i = 0 ; i < cantPlanes ; i++){
-                    leerPlanes(parte);
-                    linea = lector.readLine();
-                    parte = linea.split(",");
-                }
+            for (int i = 0 ; i < cantClientes ; i++){
+                linea = lector.readLine();
+                parte = linea.split(",");
+                leerClientes(parte);
             }
-            else if (cont == 2){
-                for (int i = 0 ; i < cantClientes ; i++){
-                    leerClientes(parte);
-                    linea = lector.readLine();
-                    parte = linea.split(",");
-                }
+        }
+
+        /*while (linea != null){
+            parte = linea.split(",");
+
+            for (int i = 0 ; i < cantPlanes ; i++){
+                leerPlanes(parte);
+                linea = lector.readLine();
+                parte = linea.split(",");
+            }
+            
+            for (int i = 0 ; i < cantClientes ; i++){
+                leerClientes(parte);
+                linea = lector.readLine();
+                parte = linea.split(",");
             }
             linea = lector.readLine();
-            cont++;
-        }
+        }*/
         lector.close();
         return empresa;
     }
@@ -56,7 +64,7 @@ public class CSV{
             archivo.write(clave + "," + empresa.getMonto(clave) + "," + empresa.getMinutos(clave) + "," + empresa.getGigas(clave));
             archivo.write(System.getProperty( "line.separator"));
         }
-
+        
         for (int i = 0 ; i < empresa.cantidadClientes() ; i++){
             archivo.write(empresa.getNombreCliente(i) + "," + empresa.getClienteDeuda(i) + "," + empresa.getClienteRut(i) + "," + ((ArrayList<String>)(empresa.getClientePlanes(i))).size());
             for (int k = 0 ; k < ((ArrayList<String>)(empresa.getClientePlanes(i))).size() ; k++){
@@ -68,49 +76,34 @@ public class CSV{
     }
 
     public void leerClientes(String[] parte){
-        String nombreCliente = null;
-        String nombrePlan = null;
-        int deuda = 0;
-        String rut = null;
-        Clientes cliente;
-        int cantPlanes = 0;
+        String nombreCliente = parte[0];
+        int deuda = Integer.parseInt(parte[1]);
+        String rut = parte[2];
+        int cantPlanes = Integer.parseInt(parte[3]);
+        String nombrePlan;
+        Clientes cliente = null;
 
-        for (int i = 0 ; i < parte.length ; i++){
-            if (i == 0) nombreCliente = parte[i];
-            else if (i == 1) deuda = Integer.parseInt(parte[i]);
-            else if (i == 2) rut = parte[i];
-            else if (i == 3){
-                cantPlanes = Integer.parseInt(parte[i]);
-                for (int k = 0 ; k < cantPlanes ; k++){
-                    nombrePlan = parte[i];
-                    cliente = empresa.agregarCliente(nombreCliente, nombrePlan, deuda, rut);
-                    cliente.agregarPlan(nombrePlan);
-                }
-            } 
+        for (int i = 4 ; i < cantPlanes + 4 ; i++){
+            nombrePlan = parte[i];
+            cliente = empresa.agregarCliente(nombreCliente, nombrePlan, deuda, rut);
+            System.out.println(empresa.cantidadClientes());
+            cliente.agregarPlan(nombrePlan);
         }
+        //((ArrayList<Clientes>)empresa.getListClientes()).add(cliente);
     }
 
     public void leerPlanes(String[] parte){
-        String PlanNombre = null;
-        int valorPlan = 0;
-        int cantMinutos = 0;
-        int cantGigas = 0;
-
-        for (int i = 0 ; i < parte.length ; i++){
-            if (i == 0) PlanNombre = parte[i];
-            else if (i == 1) valorPlan = Integer.parseInt(parte[i]);
-            else if (i == 2) cantMinutos = Integer.parseInt(parte[i]);
-            else if (i == 3) cantGigas = Integer.parseInt(parte[i]);
-        }
+        String PlanNombre = parte[0];
+        int valorPlan = Integer.parseInt(parte[1]);
+        int cantMinutos = Integer.parseInt(parte[2]);
+        int cantGigas = Integer.parseInt(parte[3]);
 
         empresa.crearPlan(PlanNombre, valorPlan, cantMinutos, cantGigas);
     }
 
     public void leerDatosBase(String[] parte){
-        for (int i = 0 ; i < parte.length ; i++){
-            if (i == 0) empresa = new Empresa(parte[i]);
-            else if (i == 1) cantPlanes = Integer.parseInt(parte[i]);
-            else if (i == 2) cantClientes = Integer.parseInt(parte[i]);
-        }
+        empresa = new Empresa(parte[0]);
+        cantPlanes = Integer.parseInt(parte[1]);
+        cantClientes = Integer.parseInt(parte[2]);
     }
 }

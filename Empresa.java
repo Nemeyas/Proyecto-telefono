@@ -63,6 +63,11 @@ public class Empresa{
     public int getMinutos(String clave){
       return tablaHash.get(clave).getMinutos();
     }
+
+    public ArrayList<Clientes> getListClientes(){
+      return listaClientes;
+    }
+
     //funcion que retorna la lista de clientes de un plan mediante el hashTable
     public ArrayList<String> getListClientes(String clave){
       return tablaHash.get(clave).getListClientes();
@@ -111,7 +116,13 @@ public class Empresa{
     public Clientes agregarCliente(String nombreCliente, String nombrePlan, int deuda ,String rut){
       Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, deuda, rut);
       tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
-      listaClientes.add(clienteNuevo);
+      if (existeCliente(nombreCliente) == false) listaClientes.add(clienteNuevo);
+      return clienteNuevo;
+    }
+
+    public Clientes agregarClienteImportar(String nombreCliente, String nombrePlan, int deuda ,String rut){
+      Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, deuda, rut);
+      tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
       return clienteNuevo;
     }
  
