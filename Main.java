@@ -6,8 +6,18 @@ import java.io.*;
 public class Main{
 
     public static void main(String[] args)throws IOException{
-      Menu menu = new Menu();
-      Empresa empresa = new Empresa(menu.leerNombreEmpresa());
+        
+        Menu menu = new Menu();
+        Empresa empresa = new Empresa();
+        
+        String nombre = "prueba.csv";
+        CSV archivo = new CSV();
+        empresa = archivo.Importar(nombre);
+        
+        Ventana a = new Ventana(empresa);
+        
+        a.setVisible(true);
+        
         while(true){
           menu.menu();
           String opcion = menu.opcion();
