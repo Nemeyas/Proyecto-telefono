@@ -9,15 +9,17 @@
  * @author nenev
  */
 public class Ventana extends javax.swing.JFrame {
-
+    private Empresa a;
     /**
      * Creates new form Ventana
      */
-    public Ventana() {
+    public Ventana(Empresa emp) {
+        
         initComponents();
         this.setTitle("Administrador de telefonía");
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
+        a = emp;
         jLabel1.setVisible(false);
         jLabel2.setVisible(false);
         jLabel3.setVisible(false);
@@ -416,7 +418,6 @@ public class Ventana extends javax.swing.JFrame {
         jButton11.setVisible(true);
         jButton12.setVisible(true);
         Boton1.setVisible(false);
-        System.out.println("hola");
         jLabel1.setVisible(true);
         jLabel1.setText("1. Crear un plan nuevo");// TODO add your handling code here:
         jLabel2.setVisible(true);
@@ -440,20 +441,30 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_saveMenuItemMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        Ventana1 b = new Ventana1();
+        Ventana1 b = new Ventana1(a);
         b.setVisible(true);
+        this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
+        Ventana2 b = new Ventana2(a);
+        b.setVisible(true);
+        this.dispose();
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        Ventana3 b = new Ventana3(a);
+        b.setVisible(true);
+        this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        Ventana4 b = new Ventana4(a);
+        b.setVisible(true);
+        this.dispose(); 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4MouseClicked
 
