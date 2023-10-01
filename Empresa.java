@@ -161,44 +161,89 @@ public class Empresa{
 
     public void agregarClienteImportar(String nombreCliente, String nombrePlan, int deuda ,String rut, Clientes cliente){
       tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
-      if (existeCliente(nombreCliente) == false) listaClientes.add(cliente);
+      listaClientes.add(cliente);
     }
  
-    public void crearPlan(String PlanNombre, int valorPlan, int cantMinutos, int cantGigas) {
-      Planes plan2 = new Planes(valorPlan, cantGigas, cantMinutos, PlanNombre);
-      if(listaNombreHash.contains(PlanNombre)){
-        return;
+    public boolean crearPlan(String PlanNombre, int valorPlan, int cantMinutos, int cantGigas) {
+      try{
+        existePlan(PlanNombre);
       }
+      catch(PlanRepetidoException a){
+        return false;
+      }
+      catch(Exception b){
+        return false;
+      }
+      Planes plan2 = new Planes(valorPlan, cantGigas, cantMinutos, PlanNombre);
       listaNombreHash.add(PlanNombre);
       tablaHash.put(PlanNombre, plan2);
+      return true;
     }
 
     //funcion que elimina un plan de una empresa, si un cliente posee este plan, se le eliminara de su lista de planes tambien
-    public void eliminarPlan(String nombrePlan){
-      tablaHash.remove(nombrePlan);
-      int posicion = listaNombreHash.indexOf(nombrePlan);
-      listaNombreHash.remove(posicion);
-      for(int i = 0 ; i < listaClientes.size(); i++){
-        listaClientes.get(i).borrarPlan(nombrePlan);
+    public boolean eliminarPlan(String nombrePlan){
+      try{
+        existePlan(nombrePlan);
       }
+      catch(PlanRepetidoException e){
+        tablaHash.remove(nombrePlan);
+        int posicion = listaNombreHash.indexOf(nombrePlan);
+        listaNombreHash.remove(posicion);
+        for(int i = 0 ; i < listaClientes.size(); i++){
+          listaClientes.get(i).borrarPlan(nombrePlan);
+        }
+        return true;
+      }
+      catch(Exception a){
+        return false;
+      }
+      return false;
+      
     }
     //funcion que elimina un cliente de la empresa
     //sobreCarga
-    public void eliminarCliente(String nombreCliente){
-      int posicion = posicionClienteLista(nombreCliente);
-      listaClientes.remove(posicion);
-      for(int i = 0 ; i < listaNombreHash.size() ; i++){
-        String posicionHash = listaNombreHash.get(i);
-        tablaHash.get(posicionHash).eliminarCliente(nombreCliente);
+    public boolean eliminarCliente(String nombreCliente){
+      try{
+        existeCliente(nombreCliente);
       }
-    
+      catch(ClienteRepetidoException a){
+        int posicion = posicionClienteLista(nombreCliente);
+        listaClientes.remove(posicion);
+        for(int i = 0 ; i < listaNombreHash.size() ; i++){
+         String posicionHash = listaNombreHash.get(i);
+          tablaHash.get(posicionHash).eliminarCliente(nombreCliente);
+       }
+       return true;
+      }
+      catch(Exception a){
+        return false;
+      }
+      return true;
     }
     //funcion que elimina un plan de un cliente
     //sobreCarga
-    public void eliminarCliente(String nombreCliente, String nombrePlan){
-      int posicion = posicionClienteLista(nombreCliente);
-      listaClientes.get(posicion).borrarPlan(nombrePlan);
-      tablaHash.get(nombrePlan).eliminarCliente(nombreCliente);
+    public boolean eliminarCliente(String nombreCliente, String nombrePlan){
+      try{
+        existeCliente(nombreCliente);
+      }
+      catch(ClienteRepetidoException a){
+        try{
+          existePlanCliente(nombrePlan);
+        }
+        catch(PlanRepetidoClienteException b){
+          int posicion = posicionClienteLista(nombreCliente);
+          listaClientes.get(posicion).borrarPlan(nombrePlan);
+          tablaHash.get(nombrePlan).eliminarCliente(nombreCliente);
+          return true;
+        }
+        catch(Exception c){
+          return false;
+        }
+      }
+      catch(Exception b){
+        return false;
+      }
+      return false;
     }
 
     /*public void eliminarPlan(String nombrePlan){
