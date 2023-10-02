@@ -21,7 +21,7 @@ public class Empresa{
       nombreDeLaEmpresa = nombreEmpresa;
     }
     //funcion que retorna true si ya existe un cliente o false si no 
-    public Boolean existeCliente(String nombreCliente) throws ClienteRepetidoException {
+    public boolean existeCliente(String nombreCliente) throws ClienteRepetidoException {
       for( int i = 0 ; i < listaClientes.size(); i++){
         if(nombreCliente.equals(listaClientes.get(i).getNombre())){
           throw new ClienteRepetidoException();
@@ -31,7 +31,7 @@ public class Empresa{
     }
 
     //funcion que retorna true si existe un plan o false si no existe
-    public Boolean existePlan(String nombrePlan)throws PlanRepetidoException{
+    public boolean existePlan(String nombrePlan)throws PlanRepetidoException{
       if(listaNombreHash.contains(nombrePlan) == true){
         throw new PlanRepetidoException();
       }
@@ -39,8 +39,7 @@ public class Empresa{
         return false;
       }
     }
-
-
+    
     //funcion que retorna la cantidad de clientes
     public int cantidadClientes(){
       return listaClientes.size();
@@ -106,7 +105,7 @@ public class Empresa{
     }
     
     //funcion que retorna true si existe un plan dentro de un cliente o false si no
-    public Boolean existePlanCliente(String nombrePlan)throws PlanRepetidoClienteException{
+    public boolean existePlanCliente(String nombrePlan)throws PlanRepetidoClienteException{
       for(int i = 0 ; i < listaClientes.size() ; i++){
         if( listaClientes.get(i).tienePlan(nombrePlan)){
           throw new PlanRepetidoClienteException();
@@ -115,44 +114,27 @@ public class Empresa{
       return false;
     }
 
-    public boolean agregarPlanCliente(String nombreCliente, String nombrePlan, int posicionCliente)throws ClienteRepetidoException, PlanRepetidoClienteException{
-      try{
-        existeCliente(nombreCliente);
-      }
-      catch(ClienteRepetidoException e){
-        try{
-          existePlanCliente(nombrePlan);
-        }
-        catch(PlanRepetidoClienteException b){
-          listaClientes.get(posicionCliente).agregarPlan(nombrePlan);
-          tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
-          return true;
-        }
-        return false;
-      }
-      catch(Exception e){
-        return false;
-      }
-      return false;
+    public void agregarPlanCliente(String nombreCliente, String nombrePlan, int posicionCliente){
+        
+            listaClientes.get(posicionCliente).agregarPlan(nombrePlan);
+            tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
     }
 
-    public boolean agregarCliente(String nombreCliente, String nombrePlan, int deuda ,String rut){
-      Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, deuda, rut);
+    public boolean agregarCliente(String nombreCliente, String nombrePlan ,String rut){
       //tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
       //listaClientes.add(clienteNuevo);
       try{
         existeCliente(nombreCliente);
         existePlan(nombrePlan);
-      } 
-      catch(ClienteRepetidoException e){
+      } catch(ClienteRepetidoException e){
         return false;
-      }
-      catch(PlanRepetidoException b){
+      } catch(PlanRepetidoException b){
+        int monto = getMonto(nombrePlan);
+        Clientes clienteNuevo = new Clientes(nombreCliente,nombrePlan, monto , rut);
         tablaHash.get(nombrePlan).agregarClientePlan(nombreCliente);
         listaClientes.add(clienteNuevo);
         return true;
-      }
-      catch(Exception e){
+      } catch(Exception e){
         return false;
       }
       return false;
@@ -167,17 +149,18 @@ public class Empresa{
     public boolean crearPlan(String PlanNombre, int valorPlan, int cantMinutos, int cantGigas) {
       try{
         existePlan(PlanNombre);
-      }
-      catch(PlanRepetidoException a){
+        Planes plan2 = new Planes(valorPlan, cantGigas, cantMinutos, PlanNombre);
+        listaNombreHash.add(PlanNombre);
+        tablaHash.put(PlanNombre, plan2);
+        return true;
+      } catch(PlanRepetidoException a){
+        System.out.print("plan repetido");
+        return false;
+      } catch(Exception b){
+        System.out.print("error de escritura");
         return false;
       }
-      catch(Exception b){
-        return false;
-      }
-      Planes plan2 = new Planes(valorPlan, cantGigas, cantMinutos, PlanNombre);
-      listaNombreHash.add(PlanNombre);
-      tablaHash.put(PlanNombre, plan2);
-      return true;
+      
     }
 
     //funcion que elimina un plan de una empresa, si un cliente posee este plan, se le eliminara de su lista de planes tambien
@@ -245,7 +228,19 @@ public class Empresa{
       }
       return false;
     }
+    
+    public long ingresosEstimados(){
+      long ingresos = 0;
+      int cantClientesPlan;
+      String plan;
 
+      for (int i = 0 ; i < cantidadPlanes() ; i++){
+        plan = listaNombrePlanes(i);
+        cantClientesPlan = getListClientes(plan).size();
+        ingresos += cantClientesPlan * getMonto(plan);
+      }
+      return ingresos;
+    }
     /*public void eliminarPlan(String nombrePlan){
         for (int i = 0 ; i < listaNombreHash.size() ; i++){
             if (nombrePlan.equals(listaNombreHash.get(i))){

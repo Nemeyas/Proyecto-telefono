@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,31 +8,24 @@
  *
  * @author nenev
  */
-public class Ventana1 extends javax.swing.JFrame {
+public class Ventana6 extends javax.swing.JFrame {
     Empresa emp;
     /**
-     * Creates new form Ventana1
+     * Creates new form Ventana6
      * @param emp
      */
-    public Ventana1(Empresa emp) {
+    public Ventana6(Empresa emp) {
         initComponents();
         this.emp = emp;
-        jLabel6.setVisible(false);
-        jButton5.setVisible(false);
-        jLabel1.setVisible(true);
-        jLabel1.setText("Ingrese el nombre del plan");
-        jLabel2.setVisible(true);
-        jLabel2.setText("Ingrese el monto");
-        jLabel3.setVisible(true);
-        jLabel3.setText("Ingrese los minutos");
-        jLabel4.setVisible(true);
-        jLabel4.setText("Ingrese los Gigas");
-        jLabel5.setVisible(false);
+        jLabel2.setVisible(false);
         jButton3.setVisible(false);
         jButton4.setVisible(false);
+        jLabel3.setVisible(false);
+        jButton5.setVisible(false);
+        jLabel1.setText("Ingrese el cliente que busca");
     }
 
-    private Ventana1() {
+    private Ventana6() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -47,20 +39,16 @@ public class Ventana1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -80,39 +68,19 @@ public class Ventana1 extends javax.swing.JFrame {
 
         jLabel1.setText("jLabel1");
 
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setText("jLabel3");
-
-        jTextField2.setText("monto...     ");
-        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTextField1.setText("jTextField1");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField2MouseClicked(evt);
+                jTextField1MouseClicked(evt);
             }
         });
 
-        jTextField3.setText("minutos...   ");
-        jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField3MouseClicked(evt);
-            }
-        });
-
-        jButton1.setText("Confirmar>");
+        jButton1.setText("Buscar...");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-
-        jTextField4.setText("gigas...       ");
-        jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField4MouseClicked(evt);
-            }
-        });
-
-        jLabel4.setText("jLabel4");
 
         jButton2.setText("Cancelar");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,7 +89,7 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("jLabel5");
+        jLabel2.setText("jLabel2");
 
         jButton3.setText("Si");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,21 +105,18 @@ public class Ventana1 extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("nombre...   ");
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
-            }
-        });
+        jLabel3.setText("jLabel3");
 
-        jLabel6.setText("jLabel6");
-
-        jButton5.setText("OK");
+        jButton5.setText("Ok");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
             }
         });
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -162,11 +127,6 @@ public class Ventana1 extends javax.swing.JFrame {
 
         saveMenuItem.setMnemonic('s');
         saveMenuItem.setText("Save");
-        saveMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveMenuItemMouseClicked(evt);
-            }
-        });
         fileMenu.add(saveMenuItem);
 
         saveAsMenuItem.setMnemonic('a');
@@ -225,80 +185,67 @@ public class Ventana1 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(297, 297, 297)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jButton3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(340, 340, 340)
-                        .addComponent(jButton5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addGap(117, 117, 117))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(126, 126, 126)
+                                        .addComponent(jButton5))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(79, 79, 79)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(255, 255, 255)
+                                .addComponent(jButton3)
+                                .addGap(57, 57, 57)
+                                .addComponent(jButton4)))
+                        .addGap(0, 240, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel5)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2)
+                        .addGap(27, 27, 27)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel6)))
-                .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
-                        .addComponent(jButton4)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jButton5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(34, 34, 34))
+                .addContainerGap())
         );
 
         pack();
@@ -309,73 +256,60 @@ public class Ventana1 extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        String a;
-        int b,c,d;
-        a=jTextField1.getText();
-        b=Integer.parseInt(jTextField2.getText());
-        c=Integer.parseInt(jTextField3.getText());
-        d=Integer.parseInt(jTextField4.getText());
-        boolean exito; 
-        exito = emp.crearPlan(a, b, c, d);
-        if(exito == false){
-            jLabel6.setVisible(true);
-            jLabel6.setText("Hubo un problema para agregar el plan");
-            jButton5.setVisible(true);
+        jTextArea1.setText(null);
+        String nombreCliente;
+        boolean aux;
+        nombreCliente= jTextField1.getText();
+        try{
+            aux = emp.existeCliente(nombreCliente);
+            if(aux == false){
+            jTextArea1.setText("El plan ingresado no existe");
+            }
         }
-        else{
-            Ventana wind = new Ventana(emp);
-            wind.setVisible(true);
-            this.dispose();
+        catch(ClienteRepetidoException e){
+            jTextArea1.append("Nombre"+nombreCliente+"\n");
+            int pos = emp.posicionClienteLista(nombreCliente);
+            jTextArea1.append(String.valueOf("Deuda: "+emp.getClienteDeuda(pos)+"\n"));
+            jTextArea1.append(String.valueOf("Rut: "+emp.getClienteRut(pos)+"\n"));
+            jTextArea1.append("Planes:"+"\n");
+            jTextArea1.append(String.valueOf(emp.getClientePlanes(pos).size()));
+            for(int i = 0; i < emp.getClientePlanes(pos).size(); i++){
+                jTextArea1.append(String.valueOf(emp.getClientePlanes(pos).get(i)+"\n"));
+                jTextArea1.append(String.valueOf(i));
+            }
         }
-        // TODO add your handling code here:
+        catch(Exception e){
+            jTextArea1.setText("Hubo un problema al ingresar el plan");
+        }            // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        jLabel5.setVisible(true);
-        jLabel5.setText("¿Esta seguro de cancelar la operacion?");
+        jLabel2.setVisible(true);
+        jLabel2.setText("¿Esta seguro de cancelar la operacion?");
         jButton3.setVisible(true);
-        jButton4.setVisible(true);
-        // TODO add your handling code here:
+        jButton4.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         Ventana wind = new Ventana(emp);
         wind.setVisible(true);
-        this.dispose();        
-        // TODO add your handling code here:
+        this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        jLabel5.setVisible(false);
+        jLabel2.setVisible(false);
         jButton3.setVisible(false);
-        jButton4.setVisible(false);
-        // TODO add your handling code here:
+        jButton4.setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        jLabel3.setVisible(false);
+        jButton5.setVisible(false);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseClicked
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         jTextField1.setText(null);        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1MouseClicked
-
-    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
-        jTextField2.setText(null);// TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2MouseClicked
-
-    private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked
-        jTextField3.setText(null);// TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3MouseClicked
-
-    private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
-        jTextField4.setText(null);// TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4MouseClicked
-
-    private void saveMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMenuItemMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveMenuItemMouseClicked
-
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        jLabel6.setVisible(false);
-        jButton5.setVisible(false);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -394,20 +328,20 @@ public class Ventana1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ventana1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ventana1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ventana1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ventana1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana1().setVisible(true);
+                new Ventana6().setVisible(true);
             }
         });
     }
@@ -430,13 +364,9 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;

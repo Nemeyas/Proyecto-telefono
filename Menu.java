@@ -19,11 +19,7 @@ public class Menu {
     System.out.println("5. Buscar plan");
     System.out.println("6. Buscar Cliente");
     System.out.println("7. Agregar plan a cliente existente");
-    System.out.println("8. Eliminar un cliente");
-    System.out.println("9. Eliminar Plan A Cliente");
-    System.out.println("10. Importar datos de un Archivo");
-    System.out.println("11. Exportar datos a un archivo");
-    System.out.println("12. Salir del programa y borrar la empresa");//cambio de opcion
+    System.out.println("8. Salir del programa y borrar la empresa");
     System.out.println(barra);
   }
 
@@ -40,16 +36,6 @@ public class Menu {
     }
     if(opcion == 7){
       System.out.println("Ingrese el nombre del cliente existente al cual le quiere añadir el plan");
-      String nombreCliente = lector.readLine();
-      return nombreCliente;
-    }
-    if(opcion == 8){
-      System.out.println("Ingrese el nombre del cliente a eliminar");
-      String nombreCliente = lector.readLine();
-      return nombreCliente;
-    }
-    if(opcion == 9){
-      System.out.println("Ingrese el nombre del cliente");
       String nombreCliente = lector.readLine();
       return nombreCliente;
     }
@@ -87,12 +73,7 @@ public class Menu {
       String nombrePlan = lector.readLine();
       return nombrePlan;
     }
-    if(opcion == 9){
-      System.out.println("Ingrese el nombre del plan a eliminar del cliente");
-      String nombrePlan = lector.readLine();
-      return nombrePlan;
-    }
-    return "ComoLlegasteAqui??";
+    return "hola";
   }
   
   public int leerPrecio()throws IOException{ 
@@ -174,10 +155,6 @@ public class Menu {
     System.out.println("El plan : " + nombrePlan + " no Existe");
   }
 
-  public void noExistePlan(String nombrePlan, String nombreCliente){
-    System.out.println("El cliente " + nombreCliente + " no posee el plan " + nombrePlan + " por lo que no se puede eliminar");
-  }
-
   public void clienteNoExiste(String nombreCliente){
     System.out.println("El Cliente " + nombreCliente + " no existe");
   }
@@ -204,5 +181,4 @@ public class Menu {
   public void existePlan(String nombrePlan){
     System.out.println("El plan : " + nombrePlan + " ya existe");
   }
-
 }

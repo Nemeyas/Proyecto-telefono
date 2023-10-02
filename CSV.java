@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,28 +14,29 @@ public class CSV{
     private int cantClientes;
 
 
-    public Empresa Importar(String FileName) throws IOException{
-        lector = new BufferedReader(new FileReader(FileName));
-        linea = lector.readLine();
+public Empresa Importar(File archivo) throws IOException {
+    lector = new BufferedReader(new FileReader(archivo));
+    linea = lector.readLine();
 
-        if (linea != null){
+    if (linea != null) {
+        parte = linea.split(",");
+        leerDatosBase(parte);
+        for (int i = 0; i < cantPlanes; i++) {
+            linea = lector.readLine();
             parte = linea.split(",");
-            leerDatosBase(parte);
-            for (int i = 0 ; i < cantPlanes ; i++){
-                linea = lector.readLine();
-                parte = linea.split(",");
-                leerPlanes(parte);
-            }
-            for (int i = 0 ; i < cantClientes ; i++){
-                linea = lector.readLine();
-                parte = linea.split(",");
-                leerClientes(parte);
-            }
+            leerPlanes(parte);
         }
-
-        lector.close();
-        return empresa;
+        for (int i = 0; i < cantClientes; i++) {
+            linea = lector.readLine();
+            parte = linea.split(",");
+            leerClientes(parte);
+        }
     }
+
+    lector.close();
+    return empresa;
+}
+
 
     public void Exportar(String FileName, Empresa empresa) throws IOException{
         String clave;
